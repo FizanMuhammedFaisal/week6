@@ -1,0 +1,80 @@
+<!-- home.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    background: linear-gradient(135deg, #874c3f, #3c6f89);
+    height: 100vh;
+}
+
+nav {
+    background-color: rgba(192, 192, 192, 0.7);
+    padding: 12px 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.content {
+    padding: 40px;
+    text-align: center;
+}
+
+.content h1 {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+.name{
+    color: #50a89f;
+}
+
+
+/*footer {
+    background-color: rgba(192, 192, 192, 0.7);
+    padding: 20px;
+    text-align: center;
+}
+*/
+
+</style>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/logout">LogOut</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        {{#if details}}
+                    <h1>Welcome to Our Website <strong class="name">{{details}}</strong></h1>
+        {{/if}}    </div>
+</body>
+</html>

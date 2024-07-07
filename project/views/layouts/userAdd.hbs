@@ -1,0 +1,168 @@
+<!-- home.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+    <!--===============================================================================================-->    
+    <link rel="icon" type="image/png" href="/images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
+    <!--===============================================================================================-->    
+    <link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->    
+    <link rel="stylesheet" type="text/css" href="/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+<!--===============================================================================================-->
+</head>
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    background: linear-gradient(135deg, #874c3f, #3c6f89);
+    height: 100vh;
+}
+
+nav {
+    background-color: rgba(192, 192, 192, 0.7);
+    padding: 12px 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.content {
+    padding: 40px;
+    text-align: center;
+}
+
+.content h1 {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+.cover{
+    width:60%
+
+}
+.boox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.right{
+    position: absolute;
+    right: 0;
+
+}
+
+/*footer {
+    background-color: rgba(192, 192, 192, 0.7);
+    padding: 20px;
+    text-align: center;
+}
+*/
+
+</style>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="/logout">LogOut</a></li>
+              <li class="right"><button type="button" onclick="window.location.href='/admin';" >Go Back</button></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <h1>Welcome Admin</h1>
+        <h2 style="color: #87633f;">Add users Here</h2>
+    </div>
+    <div class="boox">
+<div class="cover">
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post" action="/admin/add" onsubmit="return passCheck(event)" >
+				
+			<p style="color: red; " id="messages"></p>
+
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
+						<input class="input100" type="text" name="username" placeholder="Username">
+						<span class="focus-input100"></span>
+					</div>
+{{#if dupli}}
+				<p style="color: red; ">{{dupli}}</p>
+{{/if}}
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter email">
+						<input class="input100" type="text" name="email" placeholder="email">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Please enter password">
+						<input class="input100" type="password" name="password" placeholder="Password" id="pass">
+						<span class="focus-input100"></span>
+					</div>
+                    
+					<div class="wrap-input100 validate-input m-t-15" data-validate = "Please enter password">
+						<input class="input100" type="password" name="repeated" placeholder="Repeat Password" id="passRepeated">
+						<span class="focus-input100"></span>
+					</div>
+
+
+					<div class="container-login100-form-btn  p-t-22">
+						<button  class="login100-form-btn" type="submit">
+							register
+						</button>
+					</div>
+
+				</form>
+                </div>
+</div>
+
+</body>
+<script>
+		function passCheck(event){
+			const pass1=document.getElementById("pass").value
+			const pass2=document.getElementById("passRepeated").value
+			const message=document.getElementById("messages")
+
+			if(pass1!==pass2){
+				event.preventDefault()
+				text="Passwords Does't Match"
+				message.textContent=text
+				return false
+			}
+			return true
+		}
+	</script>
+</html>

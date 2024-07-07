@@ -1,0 +1,153 @@
+<!-- home.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<style>
+
+body {
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    background: linear-gradient(135deg, #226283 ,#8b5549);
+}
+
+nav {
+    background-color: rgba(192, 192, 192, 0.7);
+    padding: 12px 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.content {
+    padding: 40px;
+    text-align: center;
+}
+
+.content h1 {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+.formul{
+    display: flex;
+ flex-direction: column;
+
+align-content: space-between;
+justify-content: space-evenly;
+align-items: flex-start;
+}
+.formul li{
+    list-style: none;
+display: flex;
+flex-direction: column;
+align-items: baseline;
+gap: 14px;
+   
+
+}
+.butt{
+    text-align: center;
+    margin: 17px;
+}
+.DelButton{
+ 
+    background-color: rgb(114, 15, 15);
+
+    border-radius: 2px;
+}
+
+
+/*footer {
+    background-color: rgba(192, 192, 192, 0.7);
+    padding: 20px;
+    text-align: center;
+}
+*/
+
+</style>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/logout">LogOut</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <h1>Welcome to edit page</h1>
+
+{{#if user}}
+      <ul>
+        <li style="list-style: none;  color: rgb(195, 177, 155);"> Resetting details of {{user.username}}</li>
+    </ul>
+<form action="/edit/{{user._id}}" method="post" onsubmit="return passCheck(event)">
+<div id="message" style="color: red;"></div>
+<div id="messagePass" style="color: red;"></div>
+  <ul class="formul">
+    <li>
+      <label for="newName">Enter New Username</label>
+      <input type="text" id="newName" name="newName">
+    </li>
+    <li>
+      <label for="newPass">Enter New Password</label>
+      <input type="password" id="newPass" name="newPass">
+    </li>
+    <li>
+      <label for="newPassRepeat">Re-enter New Password</label>
+      <input type="password" id="newPassRepeat" name="newPassRepeat">
+    </li>
+    <li>
+      <button type="submit" class="butt" >Save Changes</button>
+    </li>
+  </ul>
+</form>
+
+<form action="/edit/{{user._id}}/delete" method="post">
+<button class="DelButton">Delete </button>
+</form>
+{{/if}}
+<script>
+ function passCheck(event){
+    const pass1=document.getElementById("newPass").value
+    const pass2=document.getElementById("newPassRepeat").value
+    const messagePass=document.getElementById("messagePass")
+    const message=document.getElementById("message")
+
+if(pass1!==pass2){
+    const text="Your Passwords Does't Match"
+message.textContent=text
+event.preventDefault()
+return false
+
+}
+return true
+
+}
+</script>
+  
+    </div>
+</body>
+</html>

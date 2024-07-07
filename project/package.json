@@ -1,0 +1,25 @@
+{
+  "name": "week6-project",
+  "version": "1.0.0",
+  "description": "this is the week6th project on brocamp",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Fizan",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie": "^0.6.0",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.19.2",
+    "hbs": "^4.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.4",
+    "morgan": "^1.10.0",
+    "nocache": "^4.0.0",
+    "nodemon": "^3.1.4",
+    "parser": "^0.1.4",
+    "uuid": "^10.0.0"
+  }
+}

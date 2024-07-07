@@ -1,0 +1,166 @@
+<!-- home.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+</head>
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    min-height: 100vh;
+    background: linear-gradient(270deg, #8b5549, #226283);
+    height: 100%;
+}
+
+nav {
+    background-color: rgba(192, 192, 192, 0.7);
+    padding: 12px 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.content {
+    padding: 40px;
+    text-align: center;
+}
+
+.content h1 {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+.box{
+ background-color: #4257abe7;
+    padding: 15px;
+    border-radius: 20px;
+
+    box-sizing: border-box;
+    margin: 4px;
+}
+.DelButton{
+    background-color: rgb(209 38 38);
+    border-radius: 2px;
+}
+
+.link{
+
+    display: grid;
+text-decoration: none;
+color: rgb(161, 214, 249);
+
+
+}
+.link :hover{
+    background-color: hsl(224, 47%, 24%);
+    color:rgb(85, 88, 114) ;
+  transition: background-color 0.5s ;
+
+
+}
+.DelButton :hover{
+    background-color: rgb(209 38 38);
+    color: #c63030;
+    
+}
+
+.container {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 77px;
+    justify-content: center;
+}
+.navbar{
+    display: flex;
+   
+}
+.right{
+    position: absolute;
+    right: 0;
+
+}
+
+
+
+</style>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="/logout">LogOut</a></li>
+
+            <li class="right"><button type="button" onclick="window.location.href='/admin/add';" >Add Users</button></li>
+
+        </ul>
+        
+    </nav>
+    <div class="content">
+        <h1>Admin Page</h1>
+        {{#if details}}
+        <input type="text" id="searchBox" placeholder="Search By Name">
+        <div class="container">
+            
+                {{#each details}}
+
+             <a href="/edit/{{this._id}}" class="link">
+             <div style="list-style: none;" class="box" >
+               
+                  <p href="/edit/{{this._id}}"><strong>Username:</strong>{{this.username}}</p>
+                     <p> <strong> _id: {{this._id}}</strong>   </p>
+                     <p><strong>Email:{{this.email}}</strong></p>
+                <form action="/edit/{{this._id}}/delete" method="post">
+                    <button class="DelButton">Delete </button>
+                </form>
+             </div>
+             </a>
+                 {{/each}}
+        </div>
+
+        {{/if}}
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const searchBox=document.getElementById('searchBox')
+            const userBoxes=document.querySelectorAll('.box')
+            document.addEventListener('input',()=>{
+                const searchTerm=searchBox.value.toLowerCase()
+                userBoxes.forEach((box)=>{
+                    const username=box.querySelector('p:first-child').textContent.toLowerCase();
+                    if(username.includes(searchTerm)){
+                        box.style.display=''
+                    }else{
+                        box.style.display="none"
+                    }
+                })
+            })
+            
+        })
+    </script>
+</body>
+</html>
